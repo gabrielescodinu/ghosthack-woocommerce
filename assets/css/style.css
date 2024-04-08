@@ -1,0 +1,26 @@
+/*
+Theme Name: WP-Base
+Theme URI: https://www.pezzilli.it
+Author: P&Co.
+Author URI: https://www.pezzilli.com
+Description: WP-Base theme.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: WP-Base
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+* {
+    font-family: "Montserrat", sans-serif;
+}
+
+.swiper-pagination-bullet {
+    background: #a855f7 !important;
+    transform: scale(1.2);
+}
+
+.swiper-pagination-bullet-active {
+    background: #a855f7 !important;
+}
