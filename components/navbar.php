@@ -3,29 +3,17 @@
    <!-- menu mobile -->
    <div id="menu-mobile" class="p-8 fixed w-screen min-h-screen backdrop-blur-2xl z-30 -translate-x-full transform transition-transform duration-300 flex flex-col justify-center">
        <div class="overflow-scroll max-h-[800px]">
-           <ul class="space-y-8">
-               <li class="relative">
-                   <button class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-purple-500 dropdown-btn flex items-center">Product <span class="material-symbols-outlined dropdown-icon">expand_more</span></button>
-                   <ul class="dropdown-menu hidden left-0 bg-gray-700/[0.5] rounded-lg p-2 text-sm mt-4">
-                       <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Company</a></li>
-                       <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Team</a></li>
-                       <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Careers</a></li>
-                       <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Serum</a></li>
-                   </ul>
-               </li>
-               <li class="relative">
-                   <button class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-purple-500 dropdown-btn flex items-center">Features <span class="material-symbols-outlined dropdown-icon">expand_more</span></button>
-                   <ul class="dropdown-menu hidden left-0 bg-gray-700/[0.5] rounded-lg p-2 text-sm mt-4">
-                       <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Company</a></li>
-                       <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Team</a></li>
-                       <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Careers</a></li>
-                       <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Serum</a></li>
-                       <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Massive</a></li>
-                   </ul>
-               </li>
-               <li><a href="/" class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-purple-500">Pricing</a></li>
-               <li><a href="/" class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-purple-500">About us</a></li>
-           </ul>
+           <?php
+            if (has_nav_menu('menu-mobile')) {
+                wp_nav_menu(array(
+                    'theme_location' => 'menu-mobile',
+                    'container' => false,
+                    'menu_class' => 'space-y-8',
+                    'walker' => new Tailwind_WP_Nav_Menu_Walker_Mobile(),
+                    'fallback_cb' => false,
+                ));
+            }
+            ?>
 
            <ul class="space-y-8 mt-8">
                <div class="flex-1 gap-x-6 items-center justify-end mt-6 space-y-6 md:flex md:space-y-0 md:mt-0">

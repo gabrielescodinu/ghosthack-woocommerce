@@ -71,17 +71,17 @@ add_action('wp_ajax_increase_quantity', 'increase_quantity_callback');
 add_action('wp_ajax_nopriv_increase_quantity', 'increase_quantity_callback');
 
 
-
-
-
+// register custom menu
 function mio_tema_register_menus()
 {
     register_nav_menus(array(
         'menu-principale' => __('Menu Principale', 'tuo-text-domain'),
+        'menu-mobile' => __('Menu Mobile', 'tuo-text-domain'),
     ));
 }
 add_action('init', 'mio_tema_register_menus');
 
+// custom menu class for desktop
 class Tailwind_WP_Nav_Menu_Walker extends Walker_Nav_Menu
 {
 
@@ -123,6 +123,58 @@ class Tailwind_WP_Nav_Menu_Walker extends Walker_Nav_Menu
     }
 
     // Fine dell'elemento: chiude gli elementi del menu (non modificato in questo esempio)
+    function end_el(&$output, $item, $depth = 0, $args = null)
+    {
+        if ($depth === 0) {
+            $output .= "</li>\n";
+        }
+    }
+}
+// custom menu class for mobile
+class Tailwind_WP_Nav_Menu_Walker_Mobile extends Walker_Nav_Menu
+{
+    // Inizio dell'elemento: genera il markup per l'inizio di ogni elemento di menu
+    function start_el(&$output, $item, $depth = 0, $args = null, $id = 0)
+    {
+        $title = $item->title;
+        $url = $item->url;
+
+        $li_classes = 'relative';
+        $button_classes = 'font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-purple-500 dropdown-btn flex items-center';
+        $a_classes = 'block py-2.5 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white';
+
+        if ($depth === 0) { // Elemento di primo livello
+            $output .= "<li class='{$li_classes}'>";
+            if ($args->walker->has_children) {
+                // Usa un button per le voci con sotto-voci
+                $output .= "<button class='{$button_classes}'>$title <span class='material-symbols-outlined dropdown-icon'>expand_more</span></button>";
+            } else {
+                // Usa un link se non ci sono sotto-voci
+                $output .= "<a href='{$url}' class='{$a_classes}'>$title</a>";
+            }
+        } else { // Sotto-elemento
+            // Semplice link per le sotto-voci
+            $output .= "<li><a href='{$url}' class='{$a_classes}'>$title</a></li>";
+        }
+    }
+
+    // Inizio sottogruppo: apre un sottogruppo di elementi
+    function start_lvl(&$output, $depth = 0, $args = null)
+    {
+        if ($depth == 0) { // Apertura solo per il primo livello di sottovoci
+            $output .= "<ul class='dropdown-menu hidden left-0 bg-gray-700/[0.5] rounded-lg p-2 text-sm mt-4'>";
+        }
+    }
+
+    // Fine sottogruppo: chiude un sottogruppo di elementi
+    function end_lvl(&$output, $depth = 0, $args = null)
+    {
+        if ($depth == 0) {
+            $output .= "</ul>";
+        }
+    }
+
+    // Fine dell'elemento: chiude gli elementi del menu
     function end_el(&$output, $item, $depth = 0, $args = null)
     {
         if ($depth === 0) {
