@@ -13,9 +13,7 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
-wc_print_notices();
-
-do_action('woocommerce_before_cart'); ?>
+?>
 
 <div class="py-6 sm:py-8 lg:py-12">
     <div class="mx-auto max-w-screen-lg px-4 md:px-8">

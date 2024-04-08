@@ -60,65 +60,27 @@
            <!-- menu -->
            <div class="flex-1 items-center mt-8 md:mt-0 md:flex hidden">
                <?php
-                // Stampare il menu principale
-                wp_nav_menu(array(
-                    'theme_location' => 'primary', // Impostare il nome della posizione del menu che corrisponde a quella assegnata nel pannello di amministrazione
-                    'menu_class' => 'justify-center items-center md:flex md:space-x-6', // Aggiungere classi CSS al menu
-                    'container' => false, // Non aggiungere un wrapper al menu
-                ));
-
                 // Resettare i parametri del menu dopo aver stampato il menu principale
                 wp_reset_query();
                 ?>
 
-               <ul class="justify-center items-center md:flex md:space-x-6">
-                   <li>
-                       <div aria-label="About" title="About" class="cursor-pointer text-gray-300 transition-colors duration-200 hover:text-purple-500 group relative">
-                           <div class="flex">About<span class="material-symbols-outlined transform transition-transform duration-300 group-hover:rotate-180">expand_more</span></div>
-                           <div class="hidden group-hover:block absolute w-40 bg-gray-900/[0.9] rounded-lg p-2 text-sm">
-                               <ul>
-                                   <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Company</a></li>
-                                   <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Team</a></li>
-                                   <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Careers</a></li>
-                                   <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Serum</a></li>
-                               </ul>
-                           </div>
-                       </div>
-                   </li>
-                   <li>
-                       <div aria-label="Integrations" title="Integrations" class="cursor-pointer text-gray-300 transition-colors duration-200 hover:text-purple-500 group relative">
-                           <div class="flex">Integrations<span class="material-symbols-outlined transform transition-transform duration-300 group-hover:rotate-180">expand_more</span></div>
-                           <div class="hidden group-hover:block absolute w-40 bg-gray-900/[0.9] rounded-lg p-2 text-sm">
-                               <ul>
-                                   <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Company</a></li>
-                                   <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Team</a></li>
-                                   <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Careers</a></li>
-                               </ul>
-                           </div>
-                       </div>
-                   </li>
-                   <li>
-                       <div aria-label="Customers" title="Customers" class="cursor-pointer text-gray-300 transition-colors duration-200 hover:text-purple-500 group relative">
-                           <div class="flex items-center">Customers<span class="material-symbols-outlined transform transition-transform duration-300 group-hover:rotate-180">expand_more</span></div>
-                           <div class="hidden group-hover:block absolute w-40 bg-gray-900/[0.9] rounded-lg p-2 text-sm">
-                               <ul>
-                                   <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Company</a></li>
-                                   <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Team</a></li>
-                                   <li><a href="#" class="block py-2.5 px-4 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white">Careers</a></li>
-                               </ul>
-                           </div>
-                       </div>
-                   </li>
-                   <li>
-                       <div aria-label="Pricing" title="Pricing" class="cursor-pointer text-gray-300 transition-colors duration-200 hover:text-purple-500 group relative">
-                           <div class="flex">Pricing<span></span></div>
-                       </div>
-                   </li>
-               </ul>
+               <?php
+                wp_nav_menu(array(
+                    'theme_location' => 'menu-principale',
+                    'container' => false, // Non vogliamo un contenitore
+                    'menu_class' => 'justify-center items-center md:flex md:space-x-6', // Classi Tailwind
+                    'fallback_cb' => false, // Nessun fallback se il menu non esiste
+                    'depth' => 2, // Permette fino a due livelli di nidificazione (voci e subvoci)
+                    'walker' => new Tailwind_WP_Nav_Menu_Walker(), // Utilizza un walker personalizzato se necessario
+                ));
+                ?>
                <div class="flex-1 gap-x-6 items-center justify-end mt-6 space-y-6 md:flex md:space-y-0 md:mt-0">
                    <div class="flex items-center gap-2">
                        <a href="" class="bg-gray-800 hover:bg-gray-700 duration-200 p-2 rounded-full flex flex-col justify-center text-gray-200"><span class="material-symbols-outlined"> favorite </span></a>
-                       <a href="" class="bg-purple-500 hover:bg-gray-700 duration-200 p-2 rounded-full flex flex-col justify-center text-gray-200"><span class="material-symbols-outlined"> shopping_cart </span></a>
+                       <a class="bg-purple-500 hover:bg-gray-700 duration-200 p-2 rounded-full flex flex-col justify-center text-gray-200 relative" href="<?php echo wc_get_cart_url(); ?>" title="<?php _e('View your shopping cart'); ?>">
+                           <span class="material-symbols-outlined">shopping_cart</span>
+                           <span class="cart-contents-count absolute -right-2 -top-2 bg-gray-600 h-5 w-5 text-center rounded-full"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+                       </a>
                    </div>
                    <a href="../login.php" class="block text-gray-200 hover:text-purple-500" rel="nofollow">Log in</a>
                    <a href="../login.php" class="flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium bg-purple-500 hover:bg-gray-700 active:bg-gray-900/75 rounded-full md:inline-flex duration-200" rel="nofollow">

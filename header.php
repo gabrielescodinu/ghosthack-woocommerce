@@ -30,8 +30,3 @@
 
 <body class="bg-gray-950">
     <?php include(get_template_directory() . '/components/navbar.php'); ?>
-
-    <a class="cart-contents text-white" href="<?php echo wc_get_cart_url(); ?>" title="<?php _e('View your shopping cart'); ?>">
-        <span class="material-symbols-outlined">shopping_cart</span>
-        <span class="cart-contents-count"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
-    </a>

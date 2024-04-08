@@ -17,7 +17,7 @@ get_header();
 
             <form class="max-w-xs mr-auto mt-4">
                 <select id="product_categories" name="product_categories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" onchange="window.location.href=this.value">
-                    <option value="/archivio/">Mostra tutti i prodotti</option>
+                    <option value="/shop/">Mostra tutti i prodotti</option>
                     <?php
                     $categories = get_terms('product_cat', array('hide_empty' => true));
                     $current_category_slug = is_product_category() ? get_queried_object()->slug : '';
