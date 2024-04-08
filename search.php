@@ -1,9 +1,4 @@
-<?php
-/*
-* Template per mostrare i risultati della ricerca.
-*/
-
-get_header(); ?>
+<?php get_header(); ?>
 
 <div class="py-6 sm:py-8 lg:py-12 relative max-w-screen-xl mx-auto">
     <div class="mx-auto px-4 md:px-8">

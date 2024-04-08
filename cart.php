@@ -1,18 +1,10 @@
-<?php
-/*
-Template Name: Cart
-*/
-?>
-
-<?php
-get_header();
-?>
+<?php /* Template Name: Cart */ ?>
+<?php get_header(); ?>
 
 <?php
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
-
 ?>
 
 <div class="py-6 sm:py-8 lg:py-12">
@@ -242,5 +234,4 @@ if (!defined('ABSPATH')) {
     });
 </script>
 
-<?php
-get_footer();
+<?php get_footer(); ?>

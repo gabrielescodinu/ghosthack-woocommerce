@@ -1,12 +1,6 @@
-<?php
-/*
-Template Name: Archive
-*/
-?>
+<?php /* Template Name: Archive */ ?>
+<?php get_header(); ?>
 
-<?php
-get_header();
-?>
 <!-- products -->
 <div class="py-6 sm:py-8 lg:py-12 relative max-w-screen-xl mx-auto">
     <div class="mx-auto px-4 md:px-8">
@@ -112,5 +106,4 @@ get_header();
     </div>
 </div>
 
-<?php
-get_footer();
+<?php get_footer(); ?>

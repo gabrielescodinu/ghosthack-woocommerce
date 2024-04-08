@@ -1,9 +1,4 @@
-<?php
-
-
-
-get_header(); // Include l'header del tema
-?>
+<?php get_header(); ?>
 
 <section class="text-gray-700 body-font relative pb-20 max-w-screen-xl mx-auto">
     <div class="container px-5 lg:py-20 py-12 mx-auto">
@@ -49,6 +44,4 @@ get_header(); // Include l'header del tema
     <div class="absolute inset-0 max-w-lg z-0 my-auto mx-auto h-72 blur-[118px] bg-gradient-to-r from-purple-900 to-blue-900"></div>
 </section>
 
-<?php
-get_footer(); // Include il piè di pagina del tema
-?>
+<?php get_footer(); ?>

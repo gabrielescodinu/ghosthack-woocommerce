@@ -1,9 +1,4 @@
-<?php
-/*
-Template Name: Home
-*/
-?>
-
+<?php /* Template Name: Home */ ?>
 <?php get_header(); ?>
 
 <!-- slider -->
