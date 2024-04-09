@@ -140,7 +140,7 @@ class Tailwind_WP_Nav_Menu_Walker_Mobile extends Walker_Nav_Menu
         $url = $item->url;
 
         $li_classes = 'relative';
-        $button_classes = 'font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-purple-500 dropdown-btn flex items-center';
+        $button_classes = 'tracking-wide text-gray-100 transition-colors duration-200 hover:text-purple-500 dropdown-btn flex items-center';
         $a_classes = 'block py-2.5 rounded transition duration-200 text-gray-300 hover:bg-purple-500 hover:text-white';
 
         if ($depth === 0) { // Elemento di primo livello

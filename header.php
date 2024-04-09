@@ -24,7 +24,7 @@
     <!-- meta tags -->
     <meta name="title" content="<?php echo get_the_title() ?>">
     <meta name="description" content="">
-
+    <meta name="robots" content="index, follow">
     <title> <?php bloginfo('name'); ?> | <?php is_front_page() ? bloginfo('description') : wp_title(); ?> </title>
 </head>
 
