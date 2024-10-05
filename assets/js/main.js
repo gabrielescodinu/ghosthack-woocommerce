@@ -77,4 +77,38 @@ $(document).ready(function () {
     });
 });
 
+// aggiungi prodotti al carrello in tempo reale
+jQuery(function ($) {
+    // Intercetta il submit del form di aggiunta al carrello
+    $('form.cart').on('submit', function (e) {
+        e.preventDefault(); // Previene il ricaricamento della pagina
 
+        var form = $(this);
+        var formData = form.serialize(); // Serializza i dati del form
+
+        $.ajax({
+            url: '/?wc-ajax=add_to_cart', // URL per l'aggiunta al carrello di WooCommerce via AJAX
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                console.log('Prodotto aggiunto al carrello.');
+
+                // Ora facciamo una richiesta AJAX per ottenere il conteggio aggiornato del carrello
+                $.ajax({
+                    url: '/wp-admin/admin-ajax.php?action=get_cart_count', // Endpoint personalizzato
+                    type: 'GET',
+                    success: function (cart_count) {
+                        // Aggiorna il numero di prodotti nel carrello
+                        $('.cart-contents-count').text(cart_count);
+                    },
+                    error: function () {
+                        console.log('Errore durante il recupero del conteggio del carrello.');
+                    }
+                });
+            },
+            error: function () {
+                alert("Errore durante l'aggiunta al carrello. Riprova.");
+            }
+        });
+    });
+});

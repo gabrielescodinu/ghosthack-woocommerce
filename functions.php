@@ -182,3 +182,13 @@ class Tailwind_WP_Nav_Menu_Walker_Mobile extends Walker_Nav_Menu
         }
     }
 }
+
+
+add_action('wp_ajax_get_cart_count', 'get_cart_count');
+add_action('wp_ajax_nopriv_get_cart_count', 'get_cart_count');
+
+function get_cart_count()
+{
+    echo WC()->cart->get_cart_contents_count();
+    wp_die(); // Termina correttamente la richiesta AJAX
+}
