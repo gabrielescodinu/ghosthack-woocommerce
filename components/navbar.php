@@ -56,7 +56,7 @@
             wp_nav_menu(array(
                 'theme_location' => 'menu-principale',
                 'container' => false, // Non vogliamo un contenitore
-                'menu_class' => 'justify-center items-center md:flex md:space-x-6', // Classi Tailwind
+                'menu_class' => 'justify-center items-baseline md:flex md:space-x-6', // Classi Tailwind
                 'fallback_cb' => false, // Nessun fallback se il menu non esiste
                 'depth' => 2, // Permette fino a due livelli di nidificazione (voci e subvoci)
                 'walker' => new Tailwind_WP_Nav_Menu_Walker(), // Utilizza un walker personalizzato se necessario
