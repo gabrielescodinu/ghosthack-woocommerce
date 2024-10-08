@@ -30,7 +30,7 @@
         <!-- gradient -->
         <div class="absolute inset-0 max-w-lg z-0 my-auto mr-auto h-72 blur-[118px] bg-gradient-to-r from-purple-900 to-blue-900"></div>
 
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
+        <div class="grid  gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
             <?php
             // Verifica se siamo in una pagina di archivio di categoria di prodotti e ottiene lo slug della categoria
             if (is_product_category()) {
