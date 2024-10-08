@@ -7,11 +7,14 @@
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             <?php
-            // Esegui la query per ottenere i prodotti di WooCommerce
+            $featured_products = wc_get_featured_product_ids();
+
             $products = new WP_Query(array(
-                'post_type' => 'product', // Tipo di post 'product' per i prodotti WooCommerce
-                'posts_per_page' => 5,   // Numero di prodotti da mostrare nello slider
+                'post_type' => 'product',
+                'posts_per_page' => -1,
+                'post__in' => $featured_products,
             ));
+
 
             // Controlla se ci sono prodotti
             if ($products->have_posts()) :
@@ -128,7 +131,7 @@
             ?>
         </div>
 
-        <a href="archive.php" class="mt-8 w-fit mx-auto px-7 py-3 bg-purple-500 hover:bg-gray-600 duration-300 text-gray-100 text-center rounded-md shadow-md block" rel="nofollow">See All Products</a>
+        <a href="/shop" class="mt-8 w-fit mx-auto px-7 py-3 bg-purple-500 hover:bg-gray-600 duration-300 text-gray-100 text-center rounded-md shadow-md block" rel="nofollow">See All Products</a>
     </div>
 </div>
 

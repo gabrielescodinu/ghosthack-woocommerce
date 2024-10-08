@@ -46,7 +46,7 @@
             // Prepara gli argomenti per la query dei prodotti, filtrando per categoria se presente e includendo la pagina corrente
             $args = array(
                 'post_type' => 'product',
-                'posts_per_page' => 1,
+                'posts_per_page' => 4,
                 'paged' => $paged,
             );
 
