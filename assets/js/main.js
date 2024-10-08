@@ -112,3 +112,43 @@ jQuery(function ($) {
         });
     });
 });
+
+
+// cambia lo stato del bottone se il prodotto è già nel carrello
+jQuery(function ($) {
+    $('form.cart').on('submit', function (e) {
+        e.preventDefault(); // Previene il ricaricamento della pagina
+
+        var form = $(this);
+        var formData = form.serialize(); // Serializza i dati del form
+        var productID = form.find('input[name="add-to-cart"]').val(); // Ottiene l'ID del prodotto
+
+        $.ajax({
+            url: '/?wc-ajax=add_to_cart', // URL per l'aggiunta al carrello di WooCommerce via AJAX
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                console.log('Prodotto aggiunto al carrello.');
+
+                // Ora facciamo una richiesta AJAX per controllare se il prodotto è nel carrello
+                $.ajax({
+                    url: '/wp-admin/admin-ajax.php?action=check_product_in_cart',
+                    type: 'POST',
+                    data: {
+                        product_id: productID
+                    },
+                    success: function (response) {
+                        if (response.in_cart) {
+                            // Se il prodotto è nel carrello, cambia il bottone
+                            form.find('button[type="submit"]').removeClass('bg-purple-500 hover:bg-gray-800').addClass('bg-green-500 hover:bg-green-700').html('<span class="material-symbols-outlined">check_circle</span>');
+                        }
+                    }
+                });
+            },
+            error: function () {
+                alert("Errore durante l'aggiunta al carrello. Riprova.");
+            }
+        });
+    });
+});
+

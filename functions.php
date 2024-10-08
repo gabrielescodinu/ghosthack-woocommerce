@@ -183,12 +183,36 @@ class Tailwind_WP_Nav_Menu_Walker_Mobile extends Walker_Nav_Menu
     }
 }
 
-
+// cambia il numero di prodotti al carrello senza ricaricare la pagina
 add_action('wp_ajax_get_cart_count', 'get_cart_count');
 add_action('wp_ajax_nopriv_get_cart_count', 'get_cart_count');
 
 function get_cart_count()
 {
     echo WC()->cart->get_cart_contents_count();
-    wp_die(); // Termina correttamente la richiesta AJAX
+    wp_die();
 }
+
+
+// cambia lo stato del bottone se il prodotto è già nel carrello
+add_action('wp_ajax_check_product_in_cart', 'check_product_in_cart');
+add_action('wp_ajax_nopriv_check_product_in_cart', 'check_product_in_cart');
+
+function check_product_in_cart()
+{
+    // Ottieni l'ID del prodotto passato via AJAX
+    $product_id = isset($_POST['product_id']) ? intval($_POST['product_id']) : 0;
+
+    // Verifica se il prodotto è nel carrello
+    $in_cart = false;
+    foreach (WC()->cart->get_cart() as $cart_item) {
+        if ($cart_item['product_id'] == $product_id) {
+            $in_cart = true;
+            break;
+        }
+    }
+
+    // Restituisci il risultato come JSON
+    wp_send_json(array('in_cart' => $in_cart));
+}
+

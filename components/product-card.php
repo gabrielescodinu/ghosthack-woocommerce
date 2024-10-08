@@ -12,15 +12,42 @@
 
     <div class="w-fit mx-auto text-center flex gap-4 pb-4 -mt-4">
         <button class="bg-gray-600 p-2 flex flex-col justify-center text-gray-100 rounded-full hover:bg-gray-500 duration-200"><span class="material-symbols-outlined"> play_arrow </span></button>
+        <?php
+        // Ottieni l'ID del prodotto
+        $product_id = $product->get_id();
+
+        // Controlla se il prodotto è già nel carrello
+        $in_cart = false;
+        foreach (WC()->cart->get_cart() as $cart_item) {
+            if ($cart_item['product_id'] == $product_id) {
+                $in_cart = true;
+                break;
+            }
+        }
+        ?>
+
         <!-- Add to Cart Button -->
         <form class="cart" method="post" enctype='multipart/form-data'>
             <?php do_action('woocommerce_before_add_to_cart_button'); ?>
 
-            <input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>" />
-            <button type="submit" class="bg-purple-500 p-2 flex flex-col justify-center text-gray-100 rounded-full hover:bg-gray-800 duration-200"><span class="material-symbols-outlined"> add_circle </span></button>
+            <input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product_id); ?>" />
+
+            <!-- Cambia il bottone in base a se il prodotto è nel carrello -->
+            <?php if ($in_cart) : ?>
+                <!-- Bottone se il prodotto è già nel carrello -->
+                <button type="button" class="bg-green-500 p-2 flex flex-col justify-center text-gray-100 rounded-full hover:bg-green-700 duration-200">
+                    <span class="material-symbols-outlined">check_circle</span>
+                </button>
+            <?php else : ?>
+                <!-- Bottone per aggiungere al carrello -->
+                <button type="submit" class="bg-purple-500 p-2 flex flex-col justify-center text-gray-100 rounded-full hover:bg-gray-800 duration-200">
+                    <span class="material-symbols-outlined">add_circle</span>
+                </button>
+            <?php endif; ?>
 
             <?php do_action('woocommerce_after_add_to_cart_button'); ?>
         </form>
+
     </div>
 
     <div class="flex items-start justify-between gap-2 rounded-b-lg bg-transparent p-4">
