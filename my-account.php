@@ -20,7 +20,7 @@
                 <div>
 
                     <!-- Account Details Section -->
-                    <div class="bg-gray-900 p-4 rounded-lg shadow-lg">
+                    <div class="bg-gray-900/[0.4] p-6 rounded-lg shadow-lg">
                         <h3 class="text-lg font-bold text-gray-200 mb-2">Dettagli dell'account</h3>
                         <div class="text-gray-400">
                             <?php echo do_shortcode('[woocommerce_my_account]'); ?>
@@ -30,7 +30,7 @@
 
             <?php else : ?>
                 <!-- If user is not logged in, show login form -->
-                <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                <div class="text-center">
                     <h3 class="text-lg font-bold text-gray-200 mb-4">Accedi o registrati</h3>
                     <div class="text-gray-400">
                         <?php echo do_shortcode('[woocommerce_my_account]'); ?>

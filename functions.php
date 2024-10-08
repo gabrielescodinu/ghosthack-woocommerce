@@ -216,3 +216,24 @@ function check_product_in_cart()
     wp_send_json(array('in_cart' => $in_cart));
 }
 
+
+// custom logo
+function theme_custom_logo_setup()
+{
+    add_theme_support('custom-logo', array(
+        'height'      => 100,
+        'width'       => 400,
+        'flex-height' => true,
+        'flex-width'  => true,
+    ));
+}
+add_action('after_setup_theme', 'theme_custom_logo_setup');
+
+
+// upload svg
+function add_svg_to_upload_mimes( $mimes ) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter( 'upload_mimes', 'add_svg_to_upload_mimes' );
+

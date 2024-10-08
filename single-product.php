@@ -61,7 +61,7 @@
                         <span class="material-symbols-outlined"> play_arrow </span>
                     </button>
                 </div>
-                <div class="mt-8 text-gray-400">
+                <!-- <div class="mt-8 text-gray-400">
                     <p class="text-gray-100 text-xl mb-4">Features:</p>
                     <ul>
                         <?php
@@ -74,7 +74,7 @@
                         }
                         ?>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

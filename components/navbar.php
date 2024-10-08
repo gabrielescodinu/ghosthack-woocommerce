@@ -37,8 +37,15 @@
     <div class="gap-x-14 items-center max-w-screen-xl mx-auto px-4 md:flex md:px-8">
         <div class="flex items-center justify-between py-5 md:block">
             <!-- logo -->
-            <a href="home.php" rel="nofollow">
-                <img src="../assets/img/logo.svg" alt="logo">
+            <a href="<?php echo esc_url(home_url('/')); ?>" rel="nofollow">
+                <?php
+                if (has_custom_logo()) {
+                    the_custom_logo(); // Mostra il logo caricato da WordPress
+                } else {
+                    // Fallback nel caso non sia stato caricato un logo
+                    echo '<img src="' . get_template_directory_uri() . '/assets/img/logo.svg" alt="logo">';
+                }
+                ?>
             </a>
             <!-- hamburger mobile -->
             <div class="md:hidden">
