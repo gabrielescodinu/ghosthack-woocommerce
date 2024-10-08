@@ -18,7 +18,18 @@
                         <?php endif; ?>
                     </div>
 
-                    <button class="flex ml-auto text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-800 duration-200 rounded">Purchase</button>
+                    <!-- Add to Cart Button -->
+                    <div class="ml-auto">
+                        <form class="cart" method="post" enctype='multipart/form-data'>
+                            <?php do_action('woocommerce_before_add_to_cart_button'); ?>
+
+                            <input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>" />
+                            <button type="submit" class="flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-800 duration-200 rounded">Purchase <span class="ml-2 material-symbols-outlined"> add_circle </span></button>
+
+                            <?php do_action('woocommerce_after_add_to_cart_button'); ?>
+                        </form>
+                    </div>
+
                     <button class="rounded-full w-10 h-10 bg-gray-700 hover:bg-gray-500 duration-200 p-0 border-0 inline-flex items-center justify-center text-gray-100 ml-4">
                         <span class="material-symbols-outlined"> play_arrow </span>
                     </button>
