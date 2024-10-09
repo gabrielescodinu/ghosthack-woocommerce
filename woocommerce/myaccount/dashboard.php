@@ -12,7 +12,7 @@
 defined('ABSPATH') || exit;
 
 ?>
-<div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+<div class="bg-gray-900 p-6 rounded-lg shadow-lg mt-8">
     <h2 class="text-2xl font-bold text-white mb-4">Benvenuto nel tuo account!</h2>
     <p class="text-gray-300">Da qui puoi gestire tutte le tue informazioni personali, ordini e indirizzi di spedizione.</p>
 
