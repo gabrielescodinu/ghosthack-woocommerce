@@ -37,7 +37,7 @@
     <div class="gap-x-14 items-center max-w-screen-xl mx-auto px-4 md:flex md:px-8">
         <div class="flex items-center justify-between py-5 md:block">
             <!-- logo -->
-            <a href="<?php echo esc_url(home_url('/')); ?>" rel="nofollow">
+            <a href="<?php echo esc_url(home_url('/')); ?>" rel="nofollow" class="hidden lg:block">
                 <?php
                 if (has_custom_logo()) {
                     the_custom_logo(); // Mostra il logo caricato da WordPress
